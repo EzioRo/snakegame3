@@ -1,6 +1,6 @@
 body {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     height: 100vh;
     margin: 0;
@@ -23,13 +23,20 @@ body {
     border: 2px solid #000;
 }
 
-/* Retro Pixel Art */
-.snake {
-    background-color: #FFD700; /* Snake color: Gold */
+.controls {
+    display: flex;
+    margin-top: 20px;
 }
 
-.food {
-    background-color: #FF4500; /* Food color: OrangeRed */
+button {
+    margin: 0 10px;
+    font-size: 16px;
+    padding: 10px 20px;
+    background-color: #FF4500; /* OrangeRed */
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    cursor: pointer;
 }
 
 /* Font Style */
