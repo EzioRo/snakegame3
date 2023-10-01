@@ -1,102 +1,21 @@
-const gridSize = 15;
-let snake = [{ x: 10, y: 10 }];
-let food = { x: 5, y: 5 };
-let dx = 1;
-let dy = 0;
-
-function drawSnake() {
-    const gameContainer = document.querySelector('.game-container');
-    gameContainer.innerHTML = '';
-    snake.forEach(segment => {
-        const snakeElement = document.createElement('div');
-        snakeElement.style.gridColumnStart = segment.x;
-        snakeElement.style.gridRowStart = segment.y;
-        snakeElement.classList.add('snake');
-        gameContainer.appendChild(snakeElement);
-    });
-}
-
-function drawFood() {
-    const foodElement = document.createElement('div');
-    foodElement.style.gridColumnStart = food.x;
-    foodElement.style.gridRowStart = food.y;
-    foodElement.classList.add('food');
-    const gameContainer = document.querySelector('.game-container');
-    gameContainer.appendChild(foodElement);
-}
-
-function moveSnake() {
-    const head = { x: snake[0].x + dx, y: snake[0].y + dy };
-    snake.unshift(head);
-    if (head.x === food.x && head.y === food.y) {
-        generateFood();
-    } else {
-        snake.pop();
-    }
-}
-
-function generateFood() {
-    const x = Math.floor(Math.random() * gridSize) + 1;
-    const y = Math.floor(Math.random() * gridSize) + 1;
-    food = { x: x, y: y };
-}
-
-function checkCollision() {
-    const head = snake[0];
-    if (head.x < 1 || head.x > gridSize || head.y < 1 || head.y > gridSize) {
-        gameOver();
-        return;
-    }
-    for (let i = 1; i < snake.length; i++) {
-        if (head.x === snake[i].x && head.y === snake[i].y) {
-            gameOver();
-            return;
-        }
-    }
-}
-
-function gameOver() {
-    alert('Game Over! Your score: ' + (snake.length - 1));
-    snake = [{ x: 10, y: 10 }];
-    dx = 1;
-    dy = 0;
-    generateFood();
-}
-
-document.getElementById('up').addEventListener('click', () => {
-    if (dy !== 1) {
-        dx = 0;
-        dy = -1;
-    }
-});
-
-document.getElementById('down').addEventListener('click', () => {
-    if (dy !== -1) {
-        dx = 0;
-        dy = 1;
-    }
-});
-
-document.getElementById('left').addEventListener('click', () => {
-    if (dx !== 1) {
-        dx = -1;
-        dy = 0;
-    }
-});
-
-document.getElementById('right').addEventListener('click', () => {
-    if (dx !== -1) {
-        dx = 1;
-        dy = 0;
-    }
-});
-
-function gameLoop() {
-    moveSnake();
-    checkCollision();
-    drawSnake();
-    drawFood();
-}
-
-generateFood(); // Call generateFood() once to display the initial food
-setInterval(gameLoop, 100);
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <title>Snake Game</title>
+</head>
+<body>
+    <div class="game-container">
+        <div class="game-board" id="gameBoard"></div>
+        <div class="controls">
+            <button id="upButton">↑</button>
+            <button id="leftButton">←</button>
+            <button id="rightButton">→</button>
+            <button id="downButton">↓</button>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
