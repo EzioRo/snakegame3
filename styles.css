@@ -1,21 +1,30 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
-    <title>Snake Game</title>
-</head>
-<body>
-    <div class="game-container">
-        <div class="game-board" id="gameBoard"></div>
-        <div class="controls">
-            <button id="upButton">↑</button>
-            <button id="leftButton">←</button>
-            <button id="rightButton">→</button>
-            <button id="downButton">↓</button>
-        </div>
-    </div>
-    <script src="script.js"></script>
-</body>
-</html>
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f1f1f1;
+}
+
+.game-container {
+    width: 300px;
+    height: 300px;
+    border: 5px solid #333;
+    position: relative;
+}
+
+.snake, .food {
+    width: 20px;
+    height: 20px;
+    position: absolute;
+}
+
+.snake {
+    background-color: #4caf50;
+}
+
+.food {
+    background-color: #f44336;
+}
